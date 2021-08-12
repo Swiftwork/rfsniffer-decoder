@@ -102,6 +102,9 @@ function extractSequenceData(raw: number[]) {
     sequence.push(timing < average.short * argv.deviation ? 1 : 0);
   }
 
+  // Filter out empty sequences
+  sequences = sequences.filter((s) => parseInt(s.join(''), 2) > 0);
+
   // Filter out too short sequences
   if (argv.bits) sequences = sequences.filter((s) => (s.length = argv.bits * (argv.me != false ? 2 : 1)));
 
